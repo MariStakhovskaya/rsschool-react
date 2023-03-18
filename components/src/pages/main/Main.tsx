@@ -1,7 +1,12 @@
 import React from 'react';
+import SearchBar from 'widgets/searchBar/SearchBar';
 
 function Main() {
-  return <div className="App">1.Search Bar. 2.Cards</div>;
+  return (
+    <div className="App">
+      <SearchBar />
+    </div>
+  );
 }
 
 export default Main;
