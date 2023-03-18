@@ -1,16 +1,16 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import style from './Header.module.css';
 
 function Header() {
   return (
     <div className={style.headerContainer}>
-      <Link to="/">
+      <NavLink to="/" className={({ isActive }) => (isActive ? `${style.activeLink}` : '')}>
         <span>MainPage</span>
-      </Link>
-      <Link to="/about">
+      </NavLink>
+      <NavLink to="/about" className={({ isActive }) => (isActive ? `${style.activeLink}` : '')}>
         <span>About us</span>
-      </Link>
+      </NavLink>
     </div>
   );
 }
