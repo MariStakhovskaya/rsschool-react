@@ -1,7 +1,7 @@
 import { render, screen } from '@testing-library/react';
 import Main from './Main';
 
-describe('Main component', () => {
+describe('Main', () => {
   test('it renders', () => {
     render(<Main />);
 

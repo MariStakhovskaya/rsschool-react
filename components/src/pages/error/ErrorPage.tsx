@@ -1,7 +1,10 @@
 import React from 'react';
+import { Component } from 'react';
 
-function ErrorPage() {
-  return <div className="App">ErrorPage</div>;
+class ErrorPage extends Component {
+  render() {
+    return <div>Error page</div>;
+  }
 }
 
 export default ErrorPage;
