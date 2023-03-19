@@ -27,7 +27,7 @@ class Card extends Component<propsType> {
   }
   render() {
     return (
-      <div className={style.cardContainer}>
+      <div className={style.cardContainer} data-testid="card">
         <div>
           <img src={this.props.duck.image} alt={this.props.duck.alt} />
         </div>

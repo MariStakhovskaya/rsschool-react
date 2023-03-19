@@ -4,7 +4,8 @@ import CardsLists from './cards/CardsLists';
 
 function Main() {
   return (
-    <div className="App">
+    <div className="main">
+      <h1>Main</h1>
       <SearchBar />
       <CardsLists />
     </div>
