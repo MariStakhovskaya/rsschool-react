@@ -2,7 +2,7 @@ import About from 'pages/about/About';
 import ErrorPage from 'pages/error/ErrorPage';
 import Main from 'pages/main/Main';
 import React from 'react';
-import { Route, Routes } from 'react-router-dom';
+import { Navigate, Route, Routes } from 'react-router-dom';
 import Header from 'widgets/header/Header';
 import './App.css';
 
@@ -15,7 +15,8 @@ function App() {
           <Route index element={<Main />} />
         </Route>
         <Route path="/about" element={<About />} />
-        <Route path="*" element={<ErrorPage />} />
+        <Route path="/404" element={<ErrorPage />} />
+        <Route path="*" element={<Navigate replace to="/404" />} />
       </Routes>
     </div>
   );
