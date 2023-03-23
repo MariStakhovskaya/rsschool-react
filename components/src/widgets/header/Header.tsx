@@ -13,6 +13,9 @@ class Header extends Component {
         <NavLink to="/about" className={({ isActive }) => (isActive ? `${style.activeLink}` : '')}>
           <span>About us</span>
         </NavLink>
+        <NavLink to="/forms" className={({ isActive }) => (isActive ? `${style.activeLink}` : '')}>
+          <span>Forms</span>
+        </NavLink>
       </div>
     );
   }
