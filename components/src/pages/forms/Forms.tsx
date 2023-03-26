@@ -1,27 +1,44 @@
 import React, { FormEvent } from 'react';
 import { Component } from 'react';
 import style from './Forms.module.css';
+import FormCard, { FormCardProps } from './FormCard';
 
-class Forms extends Component {
+type FormsProps = Record<string, never>;
+type FormsState = {
+  cards: FormCardProps[];
+};
+class Forms extends Component<FormsProps, FormsState> {
   inputName = React.createRef<HTMLInputElement>();
   inputDate = React.createRef<HTMLInputElement>();
   inputCheck = React.createRef<HTMLInputElement>();
   inputSelect = React.createRef<HTMLSelectElement>();
   inputFile = React.createRef<HTMLInputElement>();
-
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  constructor(props: any) {
+  formRef = React.createRef<HTMLFormElement>();
+  constructor(props: FormsProps) {
     super(props);
+    this.handleSubmit = this.handleSubmit.bind(this);
+    this.state = {
+      cards: [],
+    };
   }
 
   handleSubmit(event: FormEvent) {
     event.preventDefault();
+    const newCard: FormCardProps[] = [
+      {
+        title: this.inputName.current?.value as string,
+        date: this.inputDate.current?.value as string,
+        file: URL.createObjectURL((this.inputFile.current?.files as FileList)[0]),
+      },
+    ];
+    this.setState({ cards: [...this.state.cards, ...newCard] });
   }
+
   render() {
     return (
       <div className={style.formContainer}>
         <div>Create card</div>
-        <form onSubmit={this.handleSubmit}>
+        <form onSubmit={this.handleSubmit} ref={this.formRef}>
           <div>
             <label>
               Title:
@@ -52,9 +69,16 @@ class Forms extends Component {
             <input type="checkbox" ref={this.inputCheck} /> - I consent to my personal data field
           </div>
           <div>
-            <input type="submit" value="Submit" />
+            <button type="submit">
+              <span>Submit</span>
+            </button>
           </div>
         </form>
+        <div>
+          {this.state.cards.map((card, index) => (
+            <FormCard key={index} {...card} />
+          ))}
+        </div>
       </div>
     );
   }

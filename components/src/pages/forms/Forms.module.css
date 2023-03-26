@@ -13,3 +13,9 @@
     border: 1px solid olive;
     border-radius: 10px;
 }
+
+.formCardContainer {
+    display: flex;
+    flex-direction: column;
+    width: 250px;
+}
