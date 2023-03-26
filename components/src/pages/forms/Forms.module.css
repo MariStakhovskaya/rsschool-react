@@ -1,0 +1,15 @@
+.formContainer{
+    width: 400px;
+    margin: 0 auto;
+    margin-top: 20px;
+}
+
+.formContainer input {
+    margin-top: 20px;
+}
+
+.formContainer .title {
+    padding: 10px;
+    border: 1px solid olive;
+    border-radius: 10px;
+}
