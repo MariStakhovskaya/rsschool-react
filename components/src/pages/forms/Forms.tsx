@@ -6,6 +6,7 @@ import FormCard, { FormCardProps } from './FormCard';
 type FormsProps = Record<string, never>;
 type FormsState = {
   cards: FormCardProps[];
+  isDisabled: boolean;
 };
 class Forms extends Component<FormsProps, FormsState> {
   inputName = React.createRef<HTMLInputElement>();
@@ -19,6 +20,7 @@ class Forms extends Component<FormsProps, FormsState> {
     this.handleSubmit = this.handleSubmit.bind(this);
     this.state = {
       cards: [],
+      isDisabled: false,
     };
   }
 
@@ -28,12 +30,21 @@ class Forms extends Component<FormsProps, FormsState> {
       {
         title: this.inputName.current?.value as string,
         date: this.inputDate.current?.value as string,
+        category: this.inputSelect.current?.value as string,
+        checkbox: this.inputCheck.current?.checked as boolean,
         file: URL.createObjectURL((this.inputFile.current?.files as FileList)[0]),
       },
     ];
     this.setState({ cards: [...this.state.cards, ...newCard] });
+    this.reset();
   }
-
+  reset() {
+    (this.inputName.current as HTMLInputElement).value = '';
+    (this.inputDate.current as HTMLInputElement).value = '';
+    (this.inputSelect.current as HTMLSelectElement).value = '';
+    (this.inputCheck.current as HTMLInputElement).checked = false;
+    (this.inputFile.current as HTMLInputElement).value = '';
+  }
   render() {
     return (
       <div className={style.formContainer}>
@@ -46,35 +57,38 @@ class Forms extends Component<FormsProps, FormsState> {
             </label>
           </div>
           <div>
-            <input type="date" ref={this.inputDate} />
+            <label>
+              Date:
+              <input type="date" ref={this.inputDate} />
+            </label>
           </div>
           <div>
             <label>
               Pick category:
               <select ref={this.inputSelect}>
                 <option></option>
-                <option value="grapefruit">mentor</option>
-                <option value="lime">student1</option>
-                <option value="coconut">tranee</option>
-                <option value="mango">junior</option>
-                <option value="mango">senior</option>
-                <option value="mango">middle</option>
+                <option value="mentor">mentor</option>
+                <option value="student1">student1</option>
+                <option value="trainee">trainee</option>
+                <option value="junior">junior</option>
+                <option value="senior">senior</option>
+                <option value="middle">middle</option>
               </select>
             </label>
           </div>
           <div>
-            <input type="file" ref={this.inputFile} />
+            <input type="file" ref={this.inputFile} required />
           </div>
           <div>
-            <input type="checkbox" ref={this.inputCheck} /> - I consent to my personal data field
+            <input type="checkbox" ref={this.inputCheck} /> - Send card in sale
           </div>
           <div>
-            <button type="submit">
+            <button type="submit" disabled={this.state.isDisabled} className={style.buttonSubmit}>
               <span>Submit</span>
             </button>
           </div>
         </form>
-        <div>
+        <div className={style.cardsBlock}>
           {this.state.cards.map((card, index) => (
             <FormCard key={index} {...card} />
           ))}

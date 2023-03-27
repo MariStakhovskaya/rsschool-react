@@ -4,6 +4,13 @@
     margin-top: 20px;
 }
 
+.cardsBlock {
+    width: 1000px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
 .formContainer input {
     margin-top: 20px;
 }
@@ -14,8 +21,19 @@
     border-radius: 10px;
 }
 
+.buttonSubmit {
+    padding: 10px;
+    background-color: olive;
+}
+
 .formCardContainer {
     display: flex;
     flex-direction: column;
     width: 250px;
+    border: 1px solid olive;
+    border-radius: 20px;
+}
+
+.formCardContainer img {
+    width: 200px;
 }

@@ -6,6 +6,8 @@ type CardProps = Record<string, never>;
 export type FormCardProps = {
   title: string;
   date: string;
+  category: string;
+  checkbox: boolean;
   file: string;
 };
 class FormCard extends Component<FormCardProps, CardProps> {
@@ -16,11 +18,13 @@ class FormCard extends Component<FormCardProps, CardProps> {
   render() {
     return (
       <div className={style.formCardContainer}>
-        <h2>Name: {this.props.title}</h2>
-        <h2>Date: {this.props.date}</h2>
+        <h3>Name: {this.props.title}</h3>
+        <div>Date: {this.props.date}</div>
         <div className="form_img">
           <img src={this.props.file} alt="pic" />
         </div>
+        <div>Category: {this.props.category}</div>
+        <div>InSale: {this.props.checkbox ? 'yes' : 'no'}</div>
       </div>
     );
   }
