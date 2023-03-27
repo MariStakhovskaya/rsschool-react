@@ -8,6 +8,7 @@ export type FormCardProps = {
   date: string;
   category: string;
   checkbox: boolean;
+  gender: string;
   file: string;
 };
 class FormCard extends Component<FormCardProps, CardProps> {
@@ -24,6 +25,7 @@ class FormCard extends Component<FormCardProps, CardProps> {
           <img src={this.props.file} alt="pic" />
         </div>
         <div>Category: {this.props.category}</div>
+        <div>Gender: {this.props.gender}</div>
         <div>InSale: {this.props.checkbox ? 'yes' : 'no'}</div>
       </div>
     );

@@ -13,6 +13,8 @@ class Forms extends Component<FormsProps, FormsState> {
   inputDate = React.createRef<HTMLInputElement>();
   inputCheck = React.createRef<HTMLInputElement>();
   inputSelect = React.createRef<HTMLSelectElement>();
+  radioOneRef = React.createRef<HTMLInputElement>();
+  radioTwoRef = React.createRef<HTMLInputElement>();
   inputFile = React.createRef<HTMLInputElement>();
   formRef = React.createRef<HTMLFormElement>();
   constructor(props: FormsProps) {
@@ -32,11 +34,13 @@ class Forms extends Component<FormsProps, FormsState> {
         date: this.inputDate.current?.value as string,
         category: this.inputSelect.current?.value as string,
         checkbox: this.inputCheck.current?.checked as boolean,
+        gender: this.radioOneRef.current?.checked ? 'Man' : 'Female',
         file: URL.createObjectURL((this.inputFile.current?.files as FileList)[0]),
       },
     ];
     this.setState({ cards: [...this.state.cards, ...newCard] });
     this.reset();
+    console.log(this.radioOneRef.current?.checked);
   }
   reset() {
     (this.inputName.current as HTMLInputElement).value = '';
@@ -44,6 +48,7 @@ class Forms extends Component<FormsProps, FormsState> {
     (this.inputSelect.current as HTMLSelectElement).value = '';
     (this.inputCheck.current as HTMLInputElement).checked = false;
     (this.inputFile.current as HTMLInputElement).value = '';
+    (this.radioOneRef.current as HTMLInputElement).checked = false;
   }
   render() {
     return (
@@ -75,6 +80,25 @@ class Forms extends Component<FormsProps, FormsState> {
                 <option value="middle">middle</option>
               </select>
             </label>
+          </div>
+          <div className={style.switchField}>
+            <input
+              ref={this.radioOneRef}
+              type="radio"
+              id="radio-one"
+              name="switch-one"
+              value="Male"
+              required
+            />
+            <label htmlFor="radio-one">Male</label>
+            <input
+              ref={this.radioTwoRef}
+              type="radio"
+              id="radio-two"
+              name="switch-one"
+              value="Female"
+            />
+            <label htmlFor="radio-two">Female</label>
           </div>
           <div>
             <input type="file" ref={this.inputFile} required />
