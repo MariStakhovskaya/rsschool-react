@@ -1,0 +1,15 @@
+.cardContainer {
+    width: 220px;
+    border: 1px solid brown;
+    border-radius: 10px;
+    margin-bottom: 20px;
+}
+
+.cardContainer img {
+    width: 200px;
+}
+
+.cardName {
+    font-size: 20px;
+    font-weight: 500;
+}
