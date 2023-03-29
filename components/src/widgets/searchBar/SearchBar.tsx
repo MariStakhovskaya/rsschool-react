@@ -1,37 +1,24 @@
-import React, { ChangeEvent } from 'react';
-import { Component } from 'react';
+import React, { ChangeEvent, useEffect, useState } from 'react';
+
 import style from '../SearchBar/SearchBar.module.css';
 
-type PropsType = Record<string, never>;
-type StateType = { inputValue: string };
+function SearchBar() {
+  const localValue = localStorage.getItem('searchValue');
+  const [value, setValue] = useState<string>(localValue ?? '');
 
-class SearchBar extends Component<PropsType, StateType> {
-  constructor(props: PropsType) {
-    super(props);
-    const localValue = localStorage.getItem('searchValue');
-    this.state = { inputValue: localValue ?? '' };
-  }
+  const onChangeInputHandler = (event: ChangeEvent<HTMLInputElement>) => {
+    setValue(event.currentTarget.value);
+  };
 
-  onChangeInputHandler(event: ChangeEvent<HTMLInputElement>) {
-    this.setState({ inputValue: event.currentTarget.value });
-  }
+  useEffect(() => {
+    localStorage.setItem('searchValue', value);
+  }, [value]);
 
-  componentWillUnmount() {
-    localStorage.setItem('searchValue', this.state.inputValue);
-  }
-
-  render() {
-    return (
-      <div className={style.searchBar}>
-        <input
-          type="text"
-          value={this.state.inputValue}
-          onChange={this.onChangeInputHandler.bind(this)}
-          placeholder="Search"
-        />
-      </div>
-    );
-  }
+  return (
+    <div className={style.searchBar}>
+      <input type="text" value={value} onChange={onChangeInputHandler} placeholder="Search" />
+    </div>
+  );
 }
 
 export default SearchBar;
