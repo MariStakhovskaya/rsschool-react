@@ -22,7 +22,7 @@ class Forms extends Component<FormsProps, FormsState> {
     this.handleSubmit = this.handleSubmit.bind(this);
     this.state = {
       cards: [],
-      isDisabled: false,
+      isDisabled: true,
     };
   }
 
@@ -42,6 +42,15 @@ class Forms extends Component<FormsProps, FormsState> {
     this.reset();
     console.log(this.radioOneRef.current?.checked);
   }
+
+  checkFormValidity() {
+    if (this.formRef.current?.checkValidity()) {
+      this.setState({ isDisabled: false });
+    } else {
+      this.setState({ isDisabled: true });
+    }
+  }
+
   reset() {
     (this.inputName.current as HTMLInputElement).value = '';
     (this.inputDate.current as HTMLInputElement).value = '';

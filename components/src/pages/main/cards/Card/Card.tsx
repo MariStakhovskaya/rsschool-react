@@ -1,5 +1,4 @@
 import React from 'react';
-import { Component } from 'react';
 import style from './Card.module.css';
 
 type CardType = {
@@ -21,23 +20,18 @@ type propsType = {
   duck: CardType;
 };
 
-class Card extends Component<propsType> {
-  constructor(props: propsType) {
-    super(props);
-  }
-  render() {
-    return (
-      <div className={style.cardContainer} data-testid="card">
-        <div>
-          <img src={this.props.duck.image} alt={this.props.duck.alt} />
-        </div>
-        <div className={style.cardName}>{this.props.duck.name}</div>
-        <div>Price: {this.props.duck.price}</div>
-        <div>Rating: {this.props.duck.raiting}</div>
-        <div>Stock: {this.props.duck.stock}</div>
+function Card(props: propsType) {
+  return (
+    <div className={style.cardContainer} data-testid="card">
+      <div>
+        <img src={props.duck.image} alt={props.duck.alt} />
       </div>
-    );
-  }
+      <div className={style.cardName}>{props.duck.name}</div>
+      <div>Price: {props.duck.price}</div>
+      <div>Rating: {props.duck.raiting}</div>
+      <div>Stock: {props.duck.stock}</div>
+    </div>
+  );
 }
 
 export default Card;

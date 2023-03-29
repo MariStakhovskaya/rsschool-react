@@ -1,6 +1,6 @@
 import React, { ChangeEvent } from 'react';
 import { Component } from 'react';
-import style from '../searchBar/SearchBar.module.css';
+import style from '../SearchBar/SearchBar.module.css';
 
 type PropsType = Record<string, never>;
 type StateType = { inputValue: string };

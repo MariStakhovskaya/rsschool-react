@@ -1,10 +1,10 @@
-import About from 'pages/about/About';
-import ErrorPage from 'pages/error/ErrorPage';
+import About from 'pages/About/About';
+import ErrorPage from 'pages/Error/ErrorPage';
 import Forms from 'pages/forms/Forms';
 import Main from 'pages/main/Main';
 import React from 'react';
 import { Navigate, Route, Routes } from 'react-router-dom';
-import Header from 'widgets/header/Header';
+import Header from 'widgets/Header/Header';
 import './App.css';
 
 function App() {
