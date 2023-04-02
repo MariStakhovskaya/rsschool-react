@@ -3,15 +3,17 @@ import React, { ChangeEvent, useEffect, useState } from 'react';
 import style from '../SearchBar/SearchBar.module.css';
 
 function SearchBar() {
-  const localValue = localStorage.getItem('searchValue');
-  const [value, setValue] = useState<string>(localValue ?? '');
+  //const localValue = localStorage.getItem('searchValue');
+  const [value, setValue] = useState<string>(localStorage.getItem('searchValue') ?? '');
 
   const onChangeInputHandler = (event: ChangeEvent<HTMLInputElement>) => {
     setValue(event.currentTarget.value);
   };
 
   useEffect(() => {
-    localStorage.setItem('searchValue', value);
+    return () => {
+      localStorage.setItem('searchValue', value);
+    };
   }, [value]);
 
   return (

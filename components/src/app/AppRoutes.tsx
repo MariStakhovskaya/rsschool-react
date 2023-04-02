@@ -3,10 +3,11 @@ import type { RouteObject } from 'react-router-dom';
 
 import Main from 'pages/main/Main';
 import About from 'pages/About/About';
-import Forms from 'pages/forms/Forms';
+//import Forms from 'pages/forms/Forms';
 import ErrorPage from 'pages/Error/ErrorPage';
 
 import React from 'react';
+import Form from 'pages/forms/Form';
 
 const AppRoutes = () => {
   const routes: RouteObject[] = [
@@ -20,7 +21,7 @@ const AppRoutes = () => {
     },
     {
       path: '/forms',
-      element: <Forms />,
+      element: <Form />,
     },
     {
       path: '*',

@@ -5,7 +5,7 @@ import CardsLists from './cards/CardsLists';
 
 function Main() {
   return (
-    <div>
+    <div data-testid="toMain">
       <h1>Main</h1>
       <SearchBar />
       <CardsLists />
