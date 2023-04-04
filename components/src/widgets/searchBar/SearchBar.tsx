@@ -3,7 +3,6 @@ import React, { ChangeEvent, useEffect, useState } from 'react';
 import style from '../SearchBar/SearchBar.module.css';
 
 function SearchBar() {
-  //const localValue = localStorage.getItem('searchValue');
   const [value, setValue] = useState<string>(localStorage.getItem('searchValue') ?? '');
 
   const onChangeInputHandler = (event: ChangeEvent<HTMLInputElement>) => {
