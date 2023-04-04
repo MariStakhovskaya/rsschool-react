@@ -19,7 +19,7 @@ function Forms() {
     register,
     handleSubmit,
     reset,
-    formState: { errors, isValid },
+    formState: { errors },
   } = useForm<FormData>();
 
   const onSubmit = (data: FormData) => {
@@ -111,11 +111,10 @@ function Forms() {
             aria-label="checkbox"
             {...register('inSale', { required: 'Check is required' })}
           />
+          {errors.inSale && <div className={style.errorRed}>{errors.inSale?.message}</div>}
         </div>
         <div>
-          <button type="submit" disabled={!isValid}>
-            Send
-          </button>
+          <button type="submit">Send</button>
         </div>
       </form>
       <div className={style.cardsBlock}>
