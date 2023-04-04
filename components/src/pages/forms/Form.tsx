@@ -35,7 +35,7 @@ function Forms() {
     ];
 
     setCards([...cards, ...newCard]);
-
+    alert('The card has been created');
     reset();
   };
 
@@ -106,7 +106,11 @@ function Forms() {
         </div>
         <div>
           <label htmlFor="inSale">Send card in sale</label>
-          <input type="checkbox" aria-label="checkbox" {...register('inSale')} />
+          <input
+            type="checkbox"
+            aria-label="checkbox"
+            {...register('inSale', { required: 'Check is required' })}
+          />
         </div>
         <div>
           <button type="submit" disabled={!isValid}>
