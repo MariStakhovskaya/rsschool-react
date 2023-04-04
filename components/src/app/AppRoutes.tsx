@@ -2,8 +2,8 @@ import { Route, Routes } from 'react-router-dom';
 import type { RouteObject } from 'react-router-dom';
 
 import Main from 'pages/main/Main';
-import About from 'pages/About/About';
-import ErrorPage from 'pages/Error/ErrorPage';
+import About from 'pages/about/About';
+import ErrorPage from 'pages/error/ErrorPage';
 
 import React from 'react';
 import Form from 'pages/forms/Form';

@@ -1,5 +1,5 @@
 import React from 'react';
-import SearchBar from 'widgets/SearchBar/SearchBar';
+import SearchBar from 'widgets/searchBar/SearchBar';
 import CardsLists from './cards/CardsLists';
 
 function Main() {

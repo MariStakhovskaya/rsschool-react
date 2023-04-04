@@ -1,6 +1,6 @@
 import React, { ChangeEvent, useEffect, useState } from 'react';
 
-import style from '../SearchBar/SearchBar.module.css';
+import style from '../searchBar/SearchBar.module.css';
 
 function SearchBar() {
   const [value, setValue] = useState<string>(localStorage.getItem('searchValue') ?? '');
