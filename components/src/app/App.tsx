@@ -1,10 +1,7 @@
 import React from 'react';
-
-import Header from 'widgets/Header/Header';
-
-import AppRoutes from './AppRoutes';
-
 import './App.css';
+import Header from 'widgets/Header/Header';
+import AppRoutes from './AppRoutes';
 
 function App() {
   return (

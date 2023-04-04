@@ -1,5 +1,4 @@
 import React from 'react';
-
 import style from './Forms.module.css';
 
 export type FormCardProps = {

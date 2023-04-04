@@ -1,5 +1,4 @@
 import React from 'react';
-
 import SearchBar from 'widgets/SearchBar/SearchBar';
 import CardsLists from './cards/CardsLists';
 
