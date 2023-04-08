@@ -2,22 +2,22 @@ import React from 'react';
 
 import style from './Card.module.css';
 
-import { CardType } from './types';
+import { cardsStateType } from 'pages/main/Main';
 
 type propsType = {
-  duck: CardType;
+  cards: cardsStateType;
 };
 
-function Card({ duck }: propsType) {
+function Card({ cards }: propsType) {
   return (
     <div className={style.cardContainer} data-testid="card">
       <div>
-        <img src={duck.image} alt={duck.alt} />
+        <img src={cards.urls.regular} alt="photo" />
       </div>
-      <div className={style.cardName}>{duck.name}</div>
-      <div>Price: {duck.price}</div>
-      <div>Rating: {duck.raiting}</div>
-      <div>Stock: {duck.stock}</div>
+      {/* <div className={style.cardName}>{cards.description}</div> */}
+      <div>Name: {cards.user.name}</div>
+      <div>Likes: {cards.likes}</div>
+      {/* <div>Stock: {duck.stock}</div> */}
     </div>
   );
 }

@@ -4,14 +4,20 @@ import style from './CardsLists.module.css';
 
 import React from 'react';
 
-import data from '../../../app/data/data.json';
+import { cardsStateType } from '../Main';
 
-function CardsLists() {
+type propsType = {
+  cards: Array<cardsStateType>;
+};
+
+function CardsLists({ cards }: propsType) {
   return (
     <div className={style.cardsListContainer}>
-      {data.map((card) => (
-        <Card key={card.id} duck={card} />
-      ))}
+      {cards.length === 0 ? (
+        <div>По вашему запросу ничего не найдено</div>
+      ) : (
+        cards.map((card) => <Card key={card.id} cards={card} />)
+      )}
     </div>
   );
 }

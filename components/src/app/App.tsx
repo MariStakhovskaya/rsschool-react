@@ -1,6 +1,6 @@
 import React from 'react';
 import './App.css';
-import Header from 'widgets/header/Header';
+import Header from '../widgets/header/Header';
 import AppRoutes from './AppRoutes';
 
 function App() {

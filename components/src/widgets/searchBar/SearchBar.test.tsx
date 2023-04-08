@@ -4,7 +4,7 @@ import SearchBar from './SearchBar';
 
 describe('SearchBar', () => {
   test('Search component renders with placeholders', () => {
-    render(<SearchBar />);
+    render(<SearchBar setSearchValue={() => {}} />);
 
     expect(screen.getByPlaceholderText('Search')).toBeInTheDocument();
   });
