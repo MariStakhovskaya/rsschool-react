@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import SearchBar from 'widgets/searchBar/SearchBar';
 import CardsLists from './cards/CardsLists';
 import Loader from 'widgets/loader/Loader';
+import { api_client } from './constants/api';
 
 export type cardsStateType = {
   description: string;
@@ -17,7 +18,7 @@ function Main() {
     localStorage.getItem('searchValue') ?? 'photo'
   );
   const [isLoading, setIsLoading] = useState<boolean>(true);
-  const api_client = 'FQaqffAe_xyl_Nk8sPtJKSI4qNlYVajbVY-XzJH5zPM';
+
   useEffect(() => {
     fetch(`https://api.unsplash.com/search/photos?query=${searchValue}&client_id=${api_client}`)
       .then((response) => response.json())
