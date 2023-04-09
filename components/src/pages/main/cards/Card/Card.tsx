@@ -7,6 +7,12 @@ import { api_client } from 'pages/main/constants/api';
 export type cardModalType = {
   id: string;
   description: string;
+  urls: { regular: string };
+  user: { name: string; profile_image: { medium: string } };
+  location: { name: string };
+  tags: Array<{ title: string }>;
+  likes: number;
+  created_at: string;
 };
 
 type propsType = {
@@ -22,6 +28,7 @@ function Card({ cards, setActive, setModalCard }: propsType) {
         .then((response) => response.json())
         .then((data) => {
           setModalCard(data);
+          console.log(data);
           setActive(true);
         });
     } catch {
@@ -33,10 +40,8 @@ function Card({ cards, setActive, setModalCard }: propsType) {
       <div>
         <img src={cards.urls.regular} alt="photo" />
       </div>
-      {/* <div className={style.cardName}>{cards.description}</div> */}
       <div>Name: {cards.user.name}</div>
       <div>Likes: {cards.likes}</div>
-      {/* <div>Stock: {duck.stock}</div> */}
     </div>
   );
 }

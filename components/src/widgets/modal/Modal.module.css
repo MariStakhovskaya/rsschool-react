@@ -23,8 +23,8 @@
   padding: 20px;
     border-radius: 12px;
     background-color: white;
-    height: 400px;
-    width: 400px;
+    height: 50vh;
+    width: 50vw;
     transform: scale(0.5);
     transition: 0.4s all;
 }
