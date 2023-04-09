@@ -14,11 +14,13 @@ function SearchBar({ setSearchValue }: propsType) {
 
   const onHandlerClick = () => {
     setSearchValue(value);
+    localStorage.setItem('searchValue', value);
   };
 
   const onKeyPressHandler = (e: KeyboardEvent<HTMLInputElement>) => {
     if (e.keyCode === 13) {
       setSearchValue(value);
+      localStorage.setItem('searchValue', value);
     }
   };
 

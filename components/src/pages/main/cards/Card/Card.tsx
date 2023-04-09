@@ -28,7 +28,6 @@ function Card({ cards, setActive, setModalCard }: propsType) {
         .then((response) => response.json())
         .then((data) => {
           setModalCard(data);
-          console.log(data);
           setActive(true);
         });
     } catch {
