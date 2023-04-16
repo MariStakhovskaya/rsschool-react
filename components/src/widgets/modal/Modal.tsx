@@ -1,15 +1,16 @@
 import React from 'react';
 import style from './Modal.module.css';
-import { cardModalType } from 'pages/main/cards/Card/Card';
 import icon from '../../assets/icon.png';
+import { useSelector } from 'react-redux';
+import { card } from 'app/store/slices/cardsSlice';
 
 type modalPropsType = {
   active: boolean;
   setActive: (active: boolean) => void;
-  modalCard: cardModalType | undefined;
 };
 
-const Modal = ({ active, setActive, modalCard }: modalPropsType) => {
+const Modal = ({ active, setActive }: modalPropsType) => {
+  const modalCard = useSelector(card);
   return (
     <div
       className={active ? `${style.modal + ' ' + style.active}` : style.modal}

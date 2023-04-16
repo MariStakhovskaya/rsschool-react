@@ -1,8 +1,8 @@
-import React from 'react';
-
+import React, { useEffect } from 'react';
 import style from './Card.module.css';
-
-import { api_client } from 'pages/main/constants/api';
+import { fetchOneCard, isModal } from 'app/store/slices/cardsSlice';
+import { useDispatch, useSelector } from 'react-redux';
+import { AppDispatch } from 'app/store/store';
 
 export type cardModalType = {
   id: string;
@@ -25,21 +25,20 @@ export type cardsStateType = {
 type propsType = {
   cards: cardsStateType;
   setActive: (active: boolean) => void;
-  setModalCard: (modalCard: cardModalType) => void;
 };
 
-function Card({ cards, setActive, setModalCard }: propsType) {
-  const onClickHandler = () => {
-    try {
-      fetch(`https://api.unsplash.com/photos/${cards.id}?client_id=${api_client}`)
-        .then((response) => response.json())
-        .then((data) => {
-          setModalCard(data);
-          setActive(true);
-        });
-    } catch {
-      console.log('some error');
+function Card({ cards, setActive }: propsType) {
+  const dispatch = useDispatch<AppDispatch>();
+  const isOpenModal = useSelector(isModal);
+  useEffect(() => {
+    if (isOpenModal) {
+      setActive(true);
     }
+  }, [isOpenModal, setActive]);
+
+  const onClickHandler = () => {
+    const id = cards.id;
+    dispatch(fetchOneCard({ id }));
   };
   return (
     <div className={style.cardContainer} data-testid="card" onClick={onClickHandler}>
