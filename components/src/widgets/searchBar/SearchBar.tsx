@@ -1,34 +1,28 @@
-import React, { ChangeEvent, KeyboardEvent, useEffect, useState } from 'react';
-
+import React, { ChangeEvent, KeyboardEvent, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { AppDispatch } from '../../app/store/store';
 import style from '../searchBar/SearchBar.module.css';
+import { searchValue, setSearchValue } from 'app/store/slices/searchSlice';
 
-type propsType = {
-  setSearchValue: (searchValue: string) => void;
-};
+function SearchBar() {
+  const searchValInput = useSelector(searchValue);
+  const dispatch = useDispatch<AppDispatch>();
 
-function SearchBar({ setSearchValue }: propsType) {
-  const [value, setValue] = useState<string>(localStorage.getItem('searchValue') ?? '');
+  const [value, setValue] = useState<string>(searchValInput ?? '');
+
   const onChangeInputHandler = (event: ChangeEvent<HTMLInputElement>) => {
     setValue(event.currentTarget.value);
   };
 
   const onHandlerClick = () => {
-    setSearchValue(value);
-    localStorage.setItem('searchValue', value);
+    dispatch(setSearchValue(value));
   };
 
   const onKeyPressHandler = (e: KeyboardEvent<HTMLInputElement>) => {
     if (e.keyCode === 13) {
-      setSearchValue(value);
-      localStorage.setItem('searchValue', value);
+      dispatch(setSearchValue(value));
     }
   };
-
-  useEffect(() => {
-    return () => {
-      localStorage.setItem('searchValue', value);
-    };
-  }, [value]);
 
   return (
     <div className={style.searchBar}>
