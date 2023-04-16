@@ -10,17 +10,21 @@ export type FormCardProps = {
   file: string;
 };
 
-function FormCard(props: FormCardProps) {
+type CardProps = {
+  card: FormCardProps;
+};
+
+function FormCard({ card }: CardProps) {
   return (
     <div className={style.formCardContainer} data-testid="formCard">
-      <h3>Name: {props.title}</h3>
-      <div>Date: {props.date}</div>
+      <h3>Name: {card.title}</h3>
+      <div>Date: {card.date}</div>
       <div className="form_img">
-        <img src={props.file} alt="pic" />
+        <img src={card.file} alt="pic" />
       </div>
-      <div>Category: {props.category}</div>
-      <div>Gender: {props.gender}</div>
-      <div>InSale: {props.checkbox}</div>
+      <div>Category: {card.category}</div>
+      <div>Gender: {card.gender}</div>
+      <div>InSale: {card.checkbox}</div>
     </div>
   );
 }

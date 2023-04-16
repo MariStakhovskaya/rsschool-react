@@ -1,9 +1,12 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useForm } from 'react-hook-form';
 import style from './Forms.module.css';
 import FormCard, { FormCardProps } from './FormCard';
+import { useDispatch, useSelector } from 'react-redux';
+import { AppDispatch } from 'app/store/store';
+import { formValue, setFormValue } from 'app/store/slices/formSlice';
 
-type FormData = {
+export type FormData = {
   title: string;
   date: string;
   category: string;
@@ -13,7 +16,8 @@ type FormData = {
 };
 
 function Forms() {
-  const [cards, setCards] = useState<Array<FormCardProps>>([]);
+  const dispatch = useDispatch<AppDispatch>();
+  const cards = useSelector(formValue);
 
   const {
     register,
@@ -23,18 +27,16 @@ function Forms() {
   } = useForm<FormData>();
 
   const onSubmit = (data: FormData) => {
-    const newCard: FormCardProps[] = [
-      {
-        title: data.title,
-        date: data.date,
-        category: data.category,
-        checkbox: data.inSale ? 'yes' : 'no',
-        gender: data.isMale,
-        file: URL.createObjectURL((data.file as unknown as FileList)[0]),
-      },
-    ];
+    const newCard: FormCardProps = {
+      title: data.title,
+      date: data.date,
+      category: data.category,
+      checkbox: data.inSale ? 'yes' : 'no',
+      gender: data.isMale,
+      file: URL.createObjectURL((data.file as unknown as FileList)[0]),
+    };
+    dispatch(setFormValue(newCard));
 
-    setCards([...cards, ...newCard]);
     alert('The card has been created');
     reset();
   };
@@ -119,7 +121,7 @@ function Forms() {
       </form>
       <div className={style.cardsBlock}>
         {cards.map((card, index) => (
-          <FormCard key={index} {...card} />
+          <FormCard key={index} card={card} />
         ))}
       </div>
     </div>

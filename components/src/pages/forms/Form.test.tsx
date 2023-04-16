@@ -7,12 +7,34 @@ import userEvent from '@testing-library/user-event';
 
 describe('Form', () => {
   it('formCards renders', () => {
-    render(<FormCard title={'New'} date={''} category={''} checkbox={''} gender={''} file={''} />);
+    render(
+      <FormCard
+        card={{
+          title: '',
+          date: '',
+          category: '',
+          checkbox: '',
+          gender: '',
+          file: '',
+        }}
+      />
+    );
     expect(screen.queryAllByTestId('formCard')).toBeTruthy();
   });
 
   it('formCards renders', () => {
-    render(<FormCard title={'New'} date={''} category={''} checkbox={''} gender={''} file={''} />);
+    render(
+      <FormCard
+        card={{
+          title: '',
+          date: '',
+          category: '',
+          checkbox: '',
+          gender: '',
+          file: '',
+        }}
+      />
+    );
     expect(screen.getByText('Category:')).toBeInTheDocument();
   });
 
