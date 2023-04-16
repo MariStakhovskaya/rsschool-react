@@ -2,8 +2,8 @@ import React from 'react';
 
 import style from './Card.module.css';
 
-import { cardsStateType } from 'pages/main/Main';
 import { api_client } from 'pages/main/constants/api';
+
 export type cardModalType = {
   id: string;
   description: string;
@@ -13,6 +13,13 @@ export type cardModalType = {
   tags: Array<{ title: string }>;
   likes: number;
   created_at: string;
+};
+export type cardsStateType = {
+  description: string;
+  id: string;
+  urls: { regular: string };
+  likes: number;
+  user: { name: string };
 };
 
 type propsType = {

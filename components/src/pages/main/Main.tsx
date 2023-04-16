@@ -1,42 +1,26 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import SearchBar from 'widgets/searchBar/SearchBar';
 import CardsLists from './cards/CardsLists';
 import Loader from 'widgets/loader/Loader';
-import { api_client } from './constants/api';
-import { useSelector } from 'react-redux';
 import { searchValue } from 'app/store/slices/searchSlice';
-
-export type cardsStateType = {
-  description: string;
-  id: string;
-  urls: { regular: string };
-  likes: number;
-  user: { name: string };
-};
+import { AppDispatch } from 'app/store/store';
+import { fetchCards, loading } from 'app/store/slices/cardsSlice';
 
 function Main() {
-  const [cardsState, setCardsState] = useState([]);
   const searchValInput = useSelector(searchValue);
-  // const [searchValue, setSearchValue] = useState<string>(
-  //   localStorage.getItem('searchValue') ?? 'photo'
-  // );
-  const [isLoading, setIsLoading] = useState<boolean>(true);
+  const isLoading = useSelector(loading);
 
+  const dispatch = useDispatch<AppDispatch>();
   useEffect(() => {
-    setIsLoading(true);
-    fetch(`https://api.unsplash.com/search/photos?query=${searchValInput}&client_id=${api_client}`)
-      .then((response) => response.json())
-      .then((data) => {
-        setCardsState(data.results);
-        setIsLoading(false);
-      });
-  }, [searchValInput]);
+    dispatch(fetchCards({ searchValInput }));
+  }, [searchValInput, dispatch]);
 
   return (
     <div data-testid="toMain">
       <h1>Main</h1>
       <SearchBar />
-      {isLoading ? <Loader /> : <CardsLists cards={cardsState} />}
+      {isLoading ? <Loader /> : <CardsLists />}
     </div>
   );
 }
