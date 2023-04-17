@@ -71,7 +71,11 @@ export const fetchOneCard = createAsyncThunk(
 export const cardsSlice = createSlice({
   name: 'cards',
   initialState,
-  reducers: {},
+  reducers: {
+    changeIsModalStatus: (state, action) => {
+      state.isModal = action.payload;
+    },
+  },
   extraReducers: (builder) => {
     builder.addCase(fetchCards.pending, (state) => {
       state.cards = [];
@@ -111,3 +115,5 @@ export const loading = (state: RootState) => state.cards.isLoading;
 export const isModal = (state: RootState) => state.cards.isModal;
 export const cards = (state: RootState) => state.cards.cards;
 export const card = (state: RootState) => state.cards.card;
+
+export const { changeIsModalStatus } = cardsSlice.actions;

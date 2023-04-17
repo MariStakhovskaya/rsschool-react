@@ -1,8 +1,9 @@
 import React from 'react';
 import style from './Modal.module.css';
 import icon from '../../assets/icon.png';
-import { useSelector } from 'react-redux';
-import { card } from 'app/store/slices/cardsSlice';
+import { useDispatch, useSelector } from 'react-redux';
+import { card, changeIsModalStatus } from 'app/store/slices/cardsSlice';
+import { AppDispatch } from 'app/store/store';
 
 type modalPropsType = {
   active: boolean;
@@ -10,11 +11,17 @@ type modalPropsType = {
 };
 
 const Modal = ({ active, setActive }: modalPropsType) => {
+  const dispatch = useDispatch<AppDispatch>();
+
+  const onClickHandler = () => {
+    setActive(false);
+    dispatch(changeIsModalStatus(false));
+  };
   const modalCard = useSelector(card);
   return (
     <div
       className={active ? `${style.modal + ' ' + style.active}` : style.modal}
-      onClick={() => setActive(false)}
+      onClick={onClickHandler}
     >
       <div
         className={active ? `${style.modalContent} ${style.active}` : style.modalContent}
@@ -36,7 +43,7 @@ const Modal = ({ active, setActive }: modalPropsType) => {
               </div>
             </div>
             <div className={style.modalInfo__right}>
-              <div className={style.closeModal} onClick={() => setActive(false)}>
+              <div className={style.closeModal} onClick={onClickHandler}>
                 x
               </div>
               <div className={style.userInfo}>
